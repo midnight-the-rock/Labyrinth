@@ -1,1 +1,17 @@
-# Labyrinth
+
+#+author: midnight-the-rock
+#+title: Labyrinth: a hobbyist operating system
+
+#+begin_quote
+
+/Labyrinth/ (/lăb′ə-rĭnth″/) 
+
+/noun/
+
+/an intricate structure of interconnecting passages through which it is difficult to find one's way; a maze./
+
+#+end_quote
+
+I originally intended this to be an x86_64 operating system, and the code about that should be laying somewhere in my computer, and in this place too. But dealing with shenanigans of long mode and virtual memory before even setting a proper physical memory manager proved to be an unnecessary hassle, so this is just an x86 protected mode project (for now).
+
+With that said, this is a personal project meant for educational purposes, notes and code comments will be laying around everywhere (though I might try to keep it as organized as possible).
