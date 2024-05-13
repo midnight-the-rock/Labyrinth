@@ -1,0 +1,4 @@
+ARCH_CC_FILES=$(wildcard $(ARCH_DIR)/*.cpp)
+ARCH_AS_FILES=$(wildcard $(ARCH_DIR)/*.S)
+
+OBJ_FILES+=$(ARCH_CC_FILES) $(ARCH_AS_FILES)

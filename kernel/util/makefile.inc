@@ -1,0 +1,3 @@
+UTIL_CC_FILES=$(wildcard $(UTIL_DIR)/*.cpp)
+
+OBJ_FILES+=$(UTIL_CC_FILES) $(UTIL_AS_FILES)
