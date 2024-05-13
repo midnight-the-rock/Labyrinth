@@ -23,7 +23,7 @@ CCFLAGS=-D__is_kernel	\
 	-Werror		\
 	-Wextra		\
 	-std=c++20	\
-#	-fstack-protector-all
+	-fstack-protector-all
 
 LDFLAGS=-T $(LINKER_SCRIPT)
 
@@ -45,7 +45,7 @@ QEMU_SERIAL=-serial mon:stdio
 QEMU_SPEAKER=-audiodev pa,id=speaker -machine pcspk-audiodev=speaker 
 QEMU_MEMORY=-m size=130
 
-QEMU_COMMAND=qemu-system-$(ARCH) $(QEMU_SERIAL) $(QEMU_SPEAKER) $(QEMU_MEMORY) $(PROJECT).iso	
+QEMU_COMMAND=qemu-system-$(ARCH) $(QEMU_SERIAL) $(QEMU_SPEAKER) $(QEMU_MEMORY) kernel.iso	
 
 # building targets
 .PHONY: clean build image run 
@@ -71,7 +71,7 @@ image: build
 	@ echo -e "\n========== Generating Image  ==========\n"
 
 	$(SILENT) cp kernel.bin isodir/boot/kernel.bin 
-	$(SILENT) grub-mkrescue -o $(PROJECT).iso isodir
+	$(SILENT) grub-mkrescue -o kernel.iso isodir
 
 run: image	
 	@ echo -e "\n========== Running ==========\n"

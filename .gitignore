@@ -1,4 +1,7 @@
-# emacs backups 
-
 *~
 \#*
+*.o
+*.iso
+*.bin
+
+isodir/*
