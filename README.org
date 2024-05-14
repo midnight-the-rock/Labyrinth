@@ -16,7 +16,7 @@ With that said, this is a personal project meant for educational purposes, notes
 
 ** Progress so far
 
-I haven't done a lot honestly, it is as simple as it can get but here is a list of what I have so build so far:
+I haven't done a lot honestly, it is as simple as it can get but here is a list of what I have built so far:
 
 - serial communication
 - hardware interrupts through the PIC 
