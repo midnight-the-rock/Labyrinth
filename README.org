@@ -13,3 +13,25 @@
 I originally intended this to be an x86_64 operating system, and the code about that should be laying somewhere in my computer, and in this place too. But dealing with shenanigans of long mode and virtual memory before even setting a proper physical memory manager proved to be an unnecessary hassle, so this is just an x86 protected mode project (for now).
 
 With that said, this is a personal project meant for educational purposes, notes and code comments will be laying around everywhere (though I might try to keep it as organized as possible).
+
+** Progress so far
+
+I haven't done a lot honestly, it is as simple as it can get but here is a list of what I have so build so far:
+
+- serial communication
+- hardware interrupts through the PIC 
+- keyboard support for both serial and PS/2
+- basic formatted printing
+- a physical memory manager (that I am uncertain whether it works or not)
+
+** Building
+
+You will require a cross compiler targeted at i386, the building script is (for now) only able to use GCC to compile the project, so get the gcc cross compiler for that architecture. 
+
+Appart from the compiler you will need to install qemu, so that this can be emulated (you could load the image to a usb stick but making it work on real hardware seems unlikely).
+
+Also, this project is being currently develop using Linux, and it will probably will stay that way.
+
+After getting the cross compiler it is as simple as getting to the src_sh{build} directory and using src_sh{make}.
+
+
