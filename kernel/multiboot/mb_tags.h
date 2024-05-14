@@ -50,6 +50,8 @@ namespace multiboot {
     // upper memory starts at 1Mb
 
     struct memory_info {
+      static constexpr u32 id = (u32)tag::type::memory_info;
+      
       u32 type;
       u32 size;
       u32 mem_lower;
@@ -61,6 +63,8 @@ namespace multiboot {
     // it also implements end() and begin() for easy iteration over memory maps
 
     struct memory_map {
+      static constexpr u32 id = (u32)tag::type::memory_map;
+
       u32 type;
       u32 size;
       u32 entry_size;
@@ -89,9 +93,9 @@ namespace multiboot {
 #define __increment_info_ptr(info_ptr) info_ptr = (tag::packed*)((u8*)info_ptr + ((info_ptr->size + 7) & ~7))
 
     template <typename T> [[gnu::always_inline]] 
-    inline auto get(tag::packed* mb_info, tag::type type) -> util::optional<T*> {
+    inline auto get(tag::packed* mb_info) -> util::optional<T*> {
       while (__not_info_ptr_end(mb_info)) {
-	if (mb_info->type == static_cast<u32>(type)) {
+	if (mb_info->type == T::id) {
 	  return reinterpret_cast<T*>(mb_info);
 	}
 

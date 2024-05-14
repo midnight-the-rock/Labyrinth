@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-  void* memset(void* data, u64 value, u64 size);
+  void* memset(void* data, u32 value, u64 size);
 
 #ifdef __cplusplus
 }

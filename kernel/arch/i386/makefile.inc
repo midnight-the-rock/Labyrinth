@@ -1,6 +1,9 @@
 ARCH_CC_FILES=$(wildcard $(ARCH_DIR)/*.cpp)
 ARCH_AS_FILES=$(wildcard $(ARCH_DIR)/*.S)
 
+ARCH_CC_FILES+=$(wildcard $(ARCH_DIR)/memory/*.cpp)
+ARCH_AS_FILES+=$(wildcard $(ARCH_DIR)/memory/*.S)
+
 CRT_BEGIN=$(OBJ_DIR)/$(ARCH_DIR)/runtime/crti.S.o
 CRT_BEGIN+=$(shell $(ARCH)-elf-g++ -print-file-name=crtbegin.o) 
 

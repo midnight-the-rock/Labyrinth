@@ -8,7 +8,7 @@
 #include <string.h>
 
 extern "C" [[maybe_unused]]
-auto memset(void* data, u64 value, u64 size) -> void* {
+auto memset(void* data, u32 value, u64 size) -> void* {
   auto buffer = reinterpret_cast<unsigned char*>(data);
 
   for (u64 i = 0; i < size; i++) {

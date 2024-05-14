@@ -11,6 +11,9 @@ namespace multiboot {
 
   namespace header {
 
+    constexpr u32 kernel_magic     = 0xe85250d6;
+    constexpr u32 bootloader_magic = 0x36d76289;
+
     /* multiboot entry, needed by the bootloader
        to know we are a multiboot complainant kernel */ 
     struct entry {
@@ -25,7 +28,7 @@ namespace multiboot {
        same on any architecture (I think) */
     consteval auto make_entry(u32 arch) -> entry {
       constexpr auto size  = static_cast<u32>(sizeof(entry));
-      constexpr auto magic = static_cast<u32>(0xe85250d6); 
+      constexpr auto magic = kernel_magic;
 
       return {
 	.magic    = magic,

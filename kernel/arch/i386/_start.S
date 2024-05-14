@@ -14,6 +14,7 @@
 _start:
 	movl	$(stack + STACK_SIZE), %esp 
 
+	add	$8, %ebx
 	push	%ebx // multiboot info ptr
 	push	%eax // multiboot magic
 	call	_init
