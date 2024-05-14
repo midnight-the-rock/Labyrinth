@@ -5,6 +5,7 @@
 .code32
 .section .text
 
+.extern _init
 .extern early_main
 
 .global _start
@@ -15,6 +16,7 @@ _start:
 
 	push	%ebx // multiboot info ptr
 	push	%eax // multiboot magic
+	call	_init
 	call	early_main
 
 	jmp .

@@ -1,5 +1,6 @@
 #include "pic.h"
 #include "definitions.h"
+#include <stdio.h>
 
 __pic::__pic() {
   m_mask_1 = io::in_b((u16)pic_master::data);
