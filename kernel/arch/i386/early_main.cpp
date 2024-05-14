@@ -39,11 +39,4 @@ auto early_main(u32 mb_magic, multiboot::tag::packed* mb_info) -> void {
   }
 
   memory::physical_mm.disable_region((u32)0x100000, (u32)end_of_kernel);
-
-  printf("\n");
-
-  for (u32 i = 0; i < 40000; i++) {
-      auto frame = memory::physical_mm.alloc();
-      printf("frame_%d:\t%x\n", i, frame);
-  }
 }
