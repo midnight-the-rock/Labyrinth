@@ -19,6 +19,9 @@ namespace memory {
     auto init_region(u32 base, u32 size) -> void;
     auto disable_region(u32 base, u32 size) -> void;
 
+    auto blocks_free() -> u32;
+    auto blocks_total() -> u32;
+
     auto alloc() -> void*;
     auto dealloc(void*) -> void;
 

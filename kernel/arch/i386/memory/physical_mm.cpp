@@ -16,8 +16,6 @@ namespace memory {
     m_blocks_in_use = m_blocks_max;
 
     memset(m_memory_map, 0xffffffff, m_blocks_max / MEMORY_BLOCKS_PER_BYTE);
-
-    printf("[ INF ] %u blocks of memory found\n", m_blocks_in_use);
   }
 
   auto __physical_mm::init_region(u32 base, u32 size) -> void {
@@ -33,7 +31,14 @@ namespace memory {
     }
 
     mmap_set(0);
-    printf("[ INF ] %u blocks of memory available\n", m_blocks_max - m_blocks_in_use);
+  }
+
+  auto __physical_mm::blocks_free() -> u32 {
+    return m_blocks_max - m_blocks_in_use;
+  }
+
+  auto __physical_mm::blocks_total() -> u32 {
+    return m_blocks_max;
   }
 
   auto __physical_mm::disable_region(u32 base, u32 size) -> void {
@@ -48,7 +53,6 @@ namespace memory {
     }
 
     mmap_set(0);
-    printf("[ INF ] %u blocks of memory available\n", m_blocks_max - m_blocks_in_use);
   }
 
   auto __physical_mm::alloc() -> void* {

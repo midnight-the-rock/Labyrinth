@@ -39,4 +39,7 @@ auto early_main(u32 mb_magic, multiboot::tag::packed* mb_info) -> void {
   }
 
   memory::physical_mm.disable_region((u32)0x100000, (u32)end_of_kernel);
+
+  printf("[ INF ]\t%u total memory blocks\n", memory::physical_mm.blocks_total());
+  printf("[ INF ]\t%u memory blocks are free to be used\n", memory::physical_mm.blocks_free());
 }

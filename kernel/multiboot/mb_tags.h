@@ -89,7 +89,7 @@ namespace multiboot {
 
     };
 
-#define __not_info_ptr_end(info_ptr)   info_ptr->type != MULTIBOOT_TAG_TYPE_END
+#define __not_info_ptr_end(info_ptr)   info_ptr->type != (u32)tag::type::end
 #define __increment_info_ptr(info_ptr) info_ptr = (tag::packed*)((u8*)info_ptr + ((info_ptr->size + 7) & ~7))
 
     template <typename T> [[gnu::always_inline]] 
