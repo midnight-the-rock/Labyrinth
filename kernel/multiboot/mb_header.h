@@ -14,6 +14,9 @@ namespace multiboot {
     constexpr u32 kernel_magic     = 0xe85250d6;
     constexpr u32 bootloader_magic = 0x36d76289;
 
+    constexpr u32 arch_i386   = 0;
+    constexpr u32 arch_mips32 = 4;
+
     /* multiboot entry, needed by the bootloader
        to know we are a multiboot complainant kernel */ 
     struct entry {

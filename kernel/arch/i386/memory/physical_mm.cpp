@@ -6,9 +6,35 @@
 constexpr u32 MEMORY_BLOCK_SIZE      = 4096;
 constexpr u32 MEMORY_BLOCKS_PER_BYTE = 8;
 
+extern "C" void* end_of_kernel;
+
 namespace memory {
 
-  auto __physical_mm::init(u32 msize, u32* mmap) -> void {
+  auto __physical_mm::init(multiboot::tag::packed* mb_info) -> void {
+    namespace mb_tag = multiboot::tag;
+
+    auto kernel_size = reinterpret_cast<u32*>(&end_of_kernel);
+
+    auto memory_map  = mb_tag::get<mb_tag::memory_map>(mb_info);
+    auto memory_info = mb_tag::get<mb_tag::memory_info>(mb_info);
+
+    auto memory_size = memory_info.value()->mem_lower + memory_info.value()->mem_upper;
+
+    init_bitmap(memory_size, kernel_size);
+
+    for (auto mmap : *memory_map.value()) {
+      if (mmap.type == 1 && mmap.addr >= 0x100000) {
+	init_region(mmap.addr, mmap.length);
+      }
+    }
+
+    disable_region((u32)0x100000, (u32)kernel_size);
+
+    printf("[ INF ]\t%u total memory blocks\n", blocks_total());
+    printf("[ INF ]\t%u memory blocks are free to be used\n", blocks_free());
+  }
+
+  auto __physical_mm::init_bitmap(u32 msize, u32* mmap) -> void {
     m_memory_map    = mmap;
     m_memory_size   = msize;
 

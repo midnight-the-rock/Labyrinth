@@ -1,7 +1,9 @@
 #include "multiboot.h"
 
+namespace mb_header = multiboot::header;
+
 MULTIBOOT_SECTION
-auto header = multiboot::header::make_entry(MULTIBOOT_ARCHITECTURE_I386);
+auto header = mb_header::make_entry(mb_header::arch_i386);
 
 // MULTIBOOT_SECTION
-// auto tag_fb = multiboot::header::make_tag_framebuffer(1280, 800, 32);
+// auto tag_fb = mb_header::make_tag_framebuffer(1280, 800, 32);

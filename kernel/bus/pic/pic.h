@@ -7,6 +7,8 @@ static class __pic final {
 public:
   __pic();
 
+  auto init() -> void;
+
   auto enable() -> void;
   auto disable() -> void;
 

@@ -33,6 +33,7 @@ SECTIONS {
 	.bss ALIGN(1M) : {
 	     *(COMMON)
 	     *(.bss)
-	     kernel_size = .;
 	}
+
+	end_of_kernel = ALIGN(1M);
 }

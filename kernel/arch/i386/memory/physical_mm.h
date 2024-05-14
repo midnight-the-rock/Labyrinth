@@ -15,7 +15,8 @@ namespace memory {
 
   static class __physical_mm final {
   public:
-    auto init(u32 msize, u32* mmap) -> void;
+    auto init(multiboot::tag::packed* mb_info) -> void;
+    auto init_bitmap(u32 msize, u32* mmap) -> void;
     auto init_region(u32 base, u32 size) -> void;
     auto disable_region(u32 base, u32 size) -> void;
 
