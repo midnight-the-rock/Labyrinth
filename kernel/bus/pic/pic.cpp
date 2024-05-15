@@ -2,9 +2,9 @@
 #include "definitions.h"
 #include <stdio.h>
 
-__pic::__pic() = default;
+__pic pic;
 
-auto __pic::init() -> void {
+__pic::__pic() {
   m_mask_1 = io::in_b((u16)pic_master::data);
   m_mask_2 = io::in_b((u16)pic_slave::data);
 

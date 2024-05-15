@@ -1,4 +1,4 @@
-//// a
+//// interrupt service routine table
 
 .section .text
 

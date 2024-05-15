@@ -3,12 +3,11 @@
 #include <io.h>
 #include <types.h>
 
-static class __pic final {
+class __pic final {
 public:
   __pic();
 
   auto init() -> void;
-
   auto enable() -> void;
   auto disable() -> void;
 
@@ -21,4 +20,6 @@ private:
   u8 m_mask_1;
   u8 m_mask_2;
 
-} pic;
+};
+
+extern __pic pic;

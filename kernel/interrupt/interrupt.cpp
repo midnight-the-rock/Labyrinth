@@ -22,8 +22,6 @@ static auto map_exception_interrupts() -> void {
 }
 
 auto set_interrupts() -> void {
-  pic.init();
-
   map_hardware_interrupts();
   map_exception_interrupts();
 
