@@ -4,6 +4,7 @@
 #include <idt.h>
 #include <types.h>
 #include <stdio.h>
+#include <util/array.h>
 #include <util/panic.h>
 #include <bus/pic/pic.h>
 #include <memory/physical_mm.h>  
@@ -18,6 +19,6 @@ auto early_main(u32 mb_magic, multiboot::tag::packed* mb_info) -> void {
 
   gdt.init();
   set_interrupts();
-
+  
   memory::physical_mm.init(mb_info);
 }

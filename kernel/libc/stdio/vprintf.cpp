@@ -2,14 +2,19 @@
 
 #include <stdio.h>
 
-auto print_string(const char* str) -> void {
+#define ALWAYS_INLINE [[gnu::always_inline]] inline 
+
+static const char* printf_numbers = "0123456789abcdef";
+
+ALWAYS_INLINE
+static auto print_string(const char* str) -> void {
   while (*str != 0) {
     putchar(*str);
     str++;
   }
 }
 
-auto print_integer_base(i16 base) -> void {
+static auto print_base(i16 base) -> void {
   putchar('0');
   
   switch (base) {
@@ -27,6 +32,7 @@ auto print_integer_base(i16 base) -> void {
   }
 }
 
+ALWAYS_INLINE
 static auto print_integer(i16 base, i64 num) -> void {
   static const char* digits = "0123456789abcdef";
 
@@ -36,7 +42,7 @@ static auto print_integer(i16 base, i64 num) -> void {
   }
 
   if (num < 10 && base != 2) {
-    print_integer_base(base);
+    print_base(base);
     putchar(digits[num]);
     return;
   }
@@ -54,7 +60,7 @@ static auto print_integer(i16 base, i64 num) -> void {
   }
 
   index--;
-  print_integer_base(base);
+  print_base(base);
 
   while (index >= 0) {
     putchar(digits[array[index]]);
@@ -62,20 +68,17 @@ static auto print_integer(i16 base, i64 num) -> void {
   }
 }
 
-static const char* printf_numbers = "0123456789abcdef";
-
-auto print_hex_32(u32 value) -> void {
-  // print the hex prefix
-  putchar('0');
-  putchar('x');
+ALWAYS_INLINE
+static auto print_hex(u64 value) -> void {
+  print_base(16);
 
   // quick exit in case no operations are necessary
   if (value < 10) {
     putchar(printf_numbers[value]);
     return;
   }
-
-  i16 index     {};
+  
+  i32 index     {};
   u64 items[16] {}; 
   u64 remaining {};
 
@@ -88,35 +91,7 @@ auto print_hex_32(u32 value) -> void {
     index++;
   }
 
-  while (index >= 0) {
-    putchar(printf_numbers[items[index]]);
-    index--;
-  }
-}
-
-auto print_hex_64(u64 value) -> void {
-  // print the hex prefix
-  putchar('0');
-  putchar('x');
-
-  // quick exit in case no operations are necessary
-  if (value < 10) {
-    putchar(printf_numbers[value]);
-    return;
-  }
-
-  i16 index     {};
-  u64 items[16] {}; 
-  u64 remaining {};
-
-  // extract each digit from value and store on an array for later use
-  while (value != 0) {
-    remaining = value % 16;
-    value     = value / 16;
-
-    items[index] = remaining;
-    index++;
-  }
+  index--;
 
   while (index >= 0) {
     putchar(printf_numbers[items[index]]);
@@ -158,11 +133,11 @@ auto vprintf(const char* __restrict__ format, va_list arguments) -> i32 {
 	break;
 
       case 'x':
-	print_hex_32(va_arg(arguments, u32));
+	print_hex(va_arg(arguments, u32));
 	break;
 
       case 'X':
-	print_hex_64(va_arg(arguments, u64));
+	print_hex(va_arg(arguments, u64));
 	break;
 
       case 'c':
