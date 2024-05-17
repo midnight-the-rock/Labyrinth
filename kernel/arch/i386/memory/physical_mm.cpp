@@ -10,6 +10,8 @@ extern "C" void* end_of_kernel;
 
 namespace memory {
 
+  __physical_mm physical_mm;
+
   auto __physical_mm::init(multiboot::tag::packed* mb_info) -> void {
     namespace mb_tag = multiboot::tag;
 

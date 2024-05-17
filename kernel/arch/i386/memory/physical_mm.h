@@ -13,7 +13,7 @@
 
 namespace memory {
 
-  static class __physical_mm final {
+  class __physical_mm final {
   public:
     auto init(multiboot::tag::packed* mb_info) -> void;
     auto init_bitmap(u32 msize, u32* mmap) -> void;
@@ -41,6 +41,8 @@ namespace memory {
     u32  m_blocks_max;
     u32  m_blocks_in_use;
 
-  } physical_mm;
+  };
+
+  extern __physical_mm physical_mm;
 
 }
