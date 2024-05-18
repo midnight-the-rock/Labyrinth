@@ -1,9 +1,11 @@
 #include <cpu.h>
-#include <bus/ps2_keyboard.h>
+#include <bus/ps2/keyboard.h>
+#include <bus/ps2/definitions.h>
 
-#define NO_MAP  0x00
-#define SHIFT_P(scan) (scan == 0x2a || scan == 0x36)
-#define SHIFT_R(scan) (scan == 0xaa || scan == 0xb6)
+constexpr u8 NO_MAP = 0x00;
+
+#define IS_SHIFT_PRESS(scan)   (scan == 0x2a || scan == 0x36)
+#define IS_SHIFT_RELEASE(scan) (scan == 0xaa || scan == 0xb6)
 
 static u8 normal_map[256] {
   NO_MAP, 0x1b, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
@@ -30,11 +32,12 @@ static u8 shift_map[256] {
 __ps2_keyboard ps2_keyboard;
 
 auto __ps2_keyboard::get_keycode(u8 scan_code) -> u8 {
-  if (SHIFT_P(scan_code)) {
+  if (IS_SHIFT_PRESS(scan_code)) {
     m_shift_on = true;
     return 0x00;
   }
-  else if (SHIFT_R(scan_code)) {
+
+  if (IS_SHIFT_RELEASE(scan_code)) {
     m_shift_on = false;
     return 0x00;
   }

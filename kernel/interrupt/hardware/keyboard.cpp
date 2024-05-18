@@ -1,7 +1,7 @@
 #include "definitions.h"
 
 #include <stdio.h>
-#include <bus/ps2_keyboard.h>
+#include <bus/ps2/keyboard.h>
 
 auto irq_keyboard(u8 code) -> void {
   u8 received  = cpu::inb(0x61);

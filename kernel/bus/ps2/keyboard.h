@@ -1,3 +1,9 @@
+//// PS/2 keyboard driver
+
+// for useful information about dealing with this thing
+// please refer to these links
+// https://wiki.osdev.org/PS/2_Keyboard
+
 #pragma once
 
 #include <types.h>
