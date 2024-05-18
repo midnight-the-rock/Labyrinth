@@ -1,6 +1,5 @@
 #include <cpu.h>
 #include <bus/ps2/keyboard.h>
-#include <bus/ps2/definitions.h>
 
 constexpr u8 NO_MAP = 0x00;
 
