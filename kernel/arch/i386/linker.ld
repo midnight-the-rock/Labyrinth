@@ -6,34 +6,34 @@ OUTPUT(kernel.bin)
 SECTIONS {
    	. = 1M; /* get the kernel to load at 1M offset (0x100000) */
 
-	.multiboot ALIGN(1M) : {
+	.multiboot ALIGN(4K) : {
 	     *(.multiboot)
 	}
 
-	.init ALIGN(1M) : {
+	.init ALIGN(4K) :  {
 	     *(.init)
 	}
 
-	.text ALIGN(1M) : {
+	.text ALIGN(4K) :  {
 	     *(.text)
 	}
 
-	.fini ALIGN(1M) : {
+	.fini ALIGN(4K) :  {
 	     *(.fini)
 	}
 
-	.rodata ALIGN(1M) : {
+	.rodata ALIGN(4K) : {
 	     *(.rodata)
 	}
 
-	.data ALIGN(1M) : {
+	.data ALIGN(4K) :  {
 	     *(.data)
 	}	
 
-	.bss ALIGN(1M) : {
+	.bss ALIGN(4K) : {
 	     *(COMMON)
 	     *(.bss)
 	}
 
-	end_of_kernel = ALIGN(1M);
+	PROVIDE(end_of_kernel = .);
 }

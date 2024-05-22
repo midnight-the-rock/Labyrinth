@@ -16,7 +16,7 @@ namespace memory {
   class __physical_mm final {
   public:
     auto init(multiboot::tag::packed* mb_info) -> void;
-    auto init_bitmap(u32 msize, u32* mmap) -> void;
+    auto init_bitmap(u32 msize, u32 mmap) -> void;
     auto init_region(u32 base, u32 size) -> void;
     auto disable_region(u32 base, u32 size) -> void;
 
@@ -24,7 +24,10 @@ namespace memory {
     auto blocks_total() -> u32;
 
     auto alloc() -> void*;
-    auto dealloc(void*) -> void;
+    auto alloc(u64 blocks) -> void*;
+
+    auto dealloc(void* addr) -> void;
+    auto dealloc(void* addr, u64 blocks) -> void;
 
     auto mmap_first_free() -> util::optional<u32>;
 
@@ -44,5 +47,4 @@ namespace memory {
   };
 
   extern __physical_mm physical_mm;
-
 }
