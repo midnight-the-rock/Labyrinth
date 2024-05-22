@@ -89,6 +89,28 @@ namespace multiboot {
 
     };
 
+    // contains information about framebuffer
+    // adrr    = framebuffer's physical address
+    // pitch   = framebuffer's pitch (in bytes)
+    // bpp     = bits per pixel
+    // fb_type = could be either indexed(0), rgb(1), ega text(2)
+    // width and height do not require explanation
+
+    struct framebuffer
+    {
+      static constexpr u32 id = (u32)tag::type::framebuffer;
+
+      u32 type;
+      u32 size;
+      u64 addr;
+      u32 pitch;
+      u32 width;
+      u32 height;
+      u8  bpp;
+      u8  fb_type;
+      u16 reserved;
+    };
+
 #define __not_info_ptr_end(info_ptr)   info_ptr->type != (u32)tag::type::end
 #define __increment_info_ptr(info_ptr) info_ptr = (tag::packed*)((u8*)info_ptr + ((info_ptr->size + 7) & ~7))
 
