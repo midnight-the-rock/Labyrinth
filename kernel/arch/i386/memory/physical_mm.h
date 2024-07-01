@@ -32,6 +32,7 @@ namespace memory {
     auto mmap_first_free() -> util::optional<u32>;
 
     auto mmap_end() -> void*;
+    auto mmap_begin() -> void*;
 
     auto mmap_set(u32 bit) -> void;
     auto mmap_unset(u32 bit) -> void;
@@ -44,6 +45,19 @@ namespace memory {
     u32  m_blocks_max;
     u32  m_blocks_in_use;
 
+  };
+
+  class memory_manager final {
+    using mb_info = multiboot::tag::packed*;
+
+  public:
+    auto init(mb_info) -> void;
+
+    auto alloc() -> void;
+    auto free(void* addr) -> void;
+
+  private:
+    
   };
 
   extern __physical_mm physical_mm;

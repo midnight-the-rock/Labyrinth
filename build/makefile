@@ -43,7 +43,7 @@ include ../kernel/makefile.inc
 
 QEMU_SERIAL=-serial mon:stdio
 QEMU_SPEAKER=-audiodev pa,id=speaker -machine pcspk-audiodev=speaker 
-QEMU_MEMORY=-m size=130
+QEMU_MEMORY=-m size=3000
 
 QEMU_COMMAND=qemu-system-$(ARCH) $(QEMU_SERIAL) $(QEMU_SPEAKER) $(QEMU_MEMORY) kernel.iso	
 

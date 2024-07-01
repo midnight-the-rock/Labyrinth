@@ -160,6 +160,10 @@ namespace memory {
     return &m_memory_map[m_blocks_max / 32];
   }
 
+  auto __physical_mm::mmap_begin() -> void* {
+    return &m_memory_map[0];
+  }
+
   auto __physical_mm::mmap_set(u32 bit) -> void {
     m_memory_map[bit / 32] |= (1 << (bit % 32));
   }
@@ -171,5 +175,4 @@ namespace memory {
   auto __physical_mm::mmap_check_bit(u32 bit) -> bool {
     return m_memory_map[bit / 32] & (1 << (bit % 32));
   }
-
 }
